@@ -87,6 +87,11 @@ void swap(int32_t *x, int32_t *y)
 	*y = temp;
 }
 
+
+/**
+布雷森汉姆直线算法（英语：Bresenham's line algorithm）画直线
+参考wiki页面：https://zh.wikipedia.org/wiki/%E5%B8%83%E9%9B%B7%E6%A3%AE%E6%BC%A2%E5%A7%86%E7%9B%B4%E7%B7%9A%E6%BC%94%E7%AE%97%E6%B3%95
+*/
 void binary_bitmap_draw_line(BinaryBitmap *thiz, int32_t x0, int32_t y0, int32_t x1, int32_t y1)
 {
     int32_t deltax, deltay, error, ystep, x, y;
@@ -186,27 +191,27 @@ static int32_t test_binary_bitmap()
 {
 	uint32_t i = 0;
 	uint32_t j = 0;
-	BinaryBitmap *signature;
+	BinaryBitmap *bitmap;
 	uint8_t *out_buffer = NULL;
 
 	uint32_t line_width = 1;
 	uint32_t width = 24;
 	uint32_t height = 12;
-	signature = binary_bitmap_create(width, height);
-	if(signature == NULL)
+	bitmap = binary_bitmap_create(width, height);
+	if(bitmap == NULL)
 	{
 	 	//Trace("debug", "binary_bitmap_create failed\r\n");
 		return -1;
 	}
-	binary_bitmap_draw_line(signature, 0, 0, width , 0);
-	binary_bitmap_draw_line(signature, width - 1, 0, width - 1, height - 1);
-	binary_bitmap_draw_line(signature, width - 1, height - 1, 0, height - 1);
-	binary_bitmap_draw_line(signature, 0, height - 1, 0, 0);
-	binary_bitmap_draw_line(signature, 0, 0, width - 1, height - 1);
-	binary_bitmap_draw_line(signature, width - 1, 0, 0, height - 1);
-	binary_bitmap_print(signature);
+	binary_bitmap_draw_line(bitmap, 0, 0, width , 0);
+	binary_bitmap_draw_line(bitmap, width - 1, 0, width - 1, height - 1);
+	binary_bitmap_draw_line(bitmap, width - 1, height - 1, 0, height - 1);
+	binary_bitmap_draw_line(bitmap, 0, height - 1, 0, 0);
+	binary_bitmap_draw_line(bitmap, 0, 0, width - 1, height - 1);
+	binary_bitmap_draw_line(bitmap, width - 1, 0, 0, height - 1);
+	binary_bitmap_print(bitmap);
 
-	binary_bitmap_destroy(signature);
+	binary_bitmap_destroy(bitmap);
 	return 0;
 }
 int main()
